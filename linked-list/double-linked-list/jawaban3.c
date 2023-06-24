@@ -44,18 +44,30 @@ Node *insertFirst(Node *head, int val)
   return head;
 }
 
-// membuat fungsi print dengan skema FIFO 
-void fifoPrint(Node *head)
+// membuat fungsi print dengan skema stack LIFO
+void stackPrint(Node *head)
 {
   // membuat node variabel curr untuk menerima head
   Node *curr = head;
-  // jika curr->next tidak sama dengan null maka curr = curr->next
-  // untuk menemukan data yg pertama kali masuk
+  // jika curr !=null maka melakukan output
+  while (curr != NULL)
+  {
+    printf("%d ", curr->data);
+    curr = curr->next;
+  }
+}
+
+// membuat fungsi reverse stack dengan skema stack LIFO
+void reverseStack(Node *head)
+{
+  // membuat node variabel curr untuk menerima head
+  Node *curr = head;
+  // jika curr->next tidak sama dengan null maka curr = curr->next dan melakukan perulangan
   while (curr->next != NULL)
   {
     curr = curr->next;
   }
-  // jika curr !=null maka melakukan output
+  // jika curr !=null maka melakukan output secara terbalik
   while (curr != NULL)
   {
     printf("%d ", curr->data);
@@ -63,48 +75,27 @@ void fifoPrint(Node *head)
   }
 }
 
-// membuat fungsi dengan skema LIFO
-void lifoPrint(Node *head)
+// membuat fungsi main program untuk menjalankan program
+int main()
 {
-  // membuat node variabel curr untuk menerima head
-  Node *curr = head;
-  // jika curr !=null maka melakukan output
-  while (curr != NULL)
-  {
-    printf("%d ", curr->data);
-    curr = curr->next;
-  }
-
-}
-
-int main(){
-  // deklarasi head node = NULL
-  // membuat vairabel char choice untuk pemilihan
-  // dan variabel int data untuk menampung data
   Node *head = NULL;
   char choice;
-  int data;
+  int val;
 
-  // melakukan looping secara terus menerusan untuk mendapatkan nilai
-  // looping berhenti jika menekan huruf selain Y / menekan huruf T
   do
   {
-    printf("Masukkan Bilangan: ");
-    scanf("%d", &data);
-    head = insertFirst(head, data);
-    printf("ada data lagi (y/t) ?  ");
+    printf("Masukkan Nilai: ");
+    scanf("%d", &val);
+    head = insertFirst(head, val);
+    printf("Tambah nilai lagi (y/t) ?  ");
     scanf(" %c", &choice);
   } while (choice == 'Y' || choice == 'y');
-  printf("\n");
 
-  // menampilkan dalam bentuk FIFO
-  printf("Data bilangan telah di inputkan secara FIFO :\n");
-  fifoPrint(head);
- 
   printf("\n");
-  // menampilkan dalam bentuk LIFO
-  printf("Data bilangan telah di inputkan secara LIFO :\n");
-  lifoPrint(head);
-  
+  printf("Stack sebelum di Reverse : ");
+  stackPrint(head);
+  printf("\n");
+  printf("Stack setelah di Reverse : ");
+  reverseStack(head);
   return 0;
 }
