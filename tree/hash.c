@@ -7,7 +7,7 @@ struct set
   int data;
 };
 struct set *array;
-int capacity = 11;
+int capacity = 10;
 int size = 0;
 
 int hashFunction(int key)
@@ -59,10 +59,10 @@ void add(int key, int data)
   while (array[index].data != 0 && array[index].key != key)
   {
     index++;
-    index % capacity;
   }
   array[index].data = data;
 }
+
 
 void deleteElement(int key)
 {
@@ -105,7 +105,7 @@ int main()
   int choice, key, data, a;
   int c = 0;
   initializeArray();
-
+  printf("capacity %d\n", capacity);
   do
   {
     show();
